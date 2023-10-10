@@ -1,0 +1,505 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>医疗设备全生命周期运维管理平台V4.2.23</title>
+	<link rel="stylesheet" type="text/css" href="/static/plugins/bootstrap/css/bootstrap.min.css?20221118" /><link rel="stylesheet" type="text/css" href="/static/plugins/easyui/css/bootstrap/easyui.css?20221118" /><link rel="stylesheet" type="text/css" href="/static/plugins/font-awesome/css/font-awesome.min.css?20221118" />
+			<link rel="stylesheet" type="text/css" href="/static/medical/css/skin.css?20221118" />
+	
+	
+	<script type="text/javascript">
+		
+		var SYD = SYD || {};
+		SYD.root = "";
+		SYD.jsPath = "/static/medical/js";
+		SYD.cssPath = "/static/medical/css";
+		SYD.imgPath = "/static/medical/images";
+		SYD.staticPath = "/static";
+		SYD.publicPath = "/static/medical";
+		SYD.pluginsPath = "/static/plugins";
+		SYD.cookiePrefix = "v4_";
+		SYD.cookiePath = "/";
+		SYD.version = "20221118";
+	</script>
+	
+	<!--[if lt IE 9]>
+		<link rel="stylesheet" type="text/css" href="/static/plugins/bootstrap/js/html5shiv.min.css" /><link rel="stylesheet" type="text/css" href="/static/plugins/bootstrap/js/respond.min.css?20221118" />
+	<![endif]-->
+	
+	<script type="text/javascript" src="/static/public/js/jquery.min.js?20221118"></script>
+		<script type="text/javascript" src="/static/plugins/easyui/jquery.easyui.min.js?20221118"></script>
+	<script type="text/javascript" src="/static/plugins/easyui/locale/easyui-lang-zh-cn.js?20221118"></script>
+	
+					
+</head>
+<body   >
+	
+
+	<div id="overall" class="easyui-layout" data-options="fit:true,border:false">
+        <!--head-->
+        <div data-options="region:'north',border:false">
+            <div class="head clearfix">
+                <div class="pull-left logo clearfix">
+                    <div class="" style="display: inline-block;vertical-align: bottom;">
+                        <img src="/static/medical/images/logo.png" alt="MEIS">
+                        <span style="display: inline-block;vertical-align: bottom;">V4.2.23</span>
+                    </div>
+                </div>
+                <div class="pull-left pt15px pl15px">
+                    <h1 class="zero">演示医院</h1>
+                </div>
+                <!---->
+                <div class="pull-right head-right mr5px">
+                    <a href="javascript:;" class="easyui-menubutton" data-options="menu:'#notice-list',hasDownArrow:false,height:'56px'">
+                        <i class="fa fa-envelope"></i>&nbsp;&nbsp;公告                    </a>
+
+                    <a href="javascript:;" class="easyui-menubutton" data-options="hasDownArrow:false,height:'56px'" onclick="art.dialog({content:$('#mobile-terminal')[0],title:'下载手机APP客户端',width:700,height:200});">
+                        <i class="fa fa-qrcode"></i>&nbsp;&nbsp;客户端                    </a>
+
+                    <a href="" class="easyui-linkbutton" title="帮助中心" data-options="plain:true,height:'56px'">
+                        <i class="fa fa-question-circle"></i>&nbsp;&nbsp;帮助                    </a>
+                    
+                    <a href="javascript:;" class="easyui-menubutton menubutton-user" title="武海刚" data-options="menu:'#member-menu-list',width:'130px',height:'56px',plain:true">
+                        <i class="fa fa-user"></i>&nbsp;武海刚&nbsp;
+                    </a>
+                </div>
+                <!---->
+                <ul class="notice-list zero" id="notice-list" data-url="/abc/new_remind/type/get_list.html" item-url="/abc/detail/id/__ID__.html" style="width: 360px;display: none;">
+                    
+                </ul>
+
+                <div class="hide">
+                    <ul class="mobile-terminal text-center zero clearfix" id="mobile-terminal">
+                        <!-- <li class="fl">
+                            <img src="/static/public/images/weixi-qrcode.jpg" alt="" width="120" />
+                            <p>扫描关注微信客户端</p>
+                        </li> -->
+                        <li class="fl">
+                                                            <img src="https://open.weixin.qq.com/qr/code?username=MEIS-v4" style="width:120px;height:120px;">
+                                                        <p>扫描关注微信客户端</p>
+                        </li>                        <li class="fl">
+                            <div style="padding:9px;width:120px;height:120px;margin:0 auto;" class="js-qrcode clearfix" config-qrcode="text:'http://app.meis100.com/download/api-test/android/phone.html',src:'/static/public/images/qrcode-logo.png',imgWidth:30,imgHeight:30"></div>
+                            <p>手机APP安卓版下载</p>
+                        </li>
+                        <li class="fl">
+                            <div style="padding: 9px;width:120px;height:120px;margin:0 auto;" class="js-qrcode clearfix" config-qrcode="text:'http://app.meis100.com/download/api-test/ios/phone.html',src:'/static/public/images/qrcode-logo.png',imgWidth:30,imgHeight:30"></div>
+                            <p>手机APP IOS版下载</p>
+                        </li>
+                    </ul>
+                </div>
+
+                <ul class="member-menu-list zero" id="member-menu-list" style="width:130px;display: none;">
+                    <li>
+                        <a href="/auth_user/profile_edit/id/356.html" title="修改资料" class="js_openTab" tab-title="修改资料 - “武海刚”"><i class="fa fa-info"></i>修改资料</a>
+                    </li>
+                    <li>
+                        <a href="javascript:;" title="修改密码" class="art-dialog-open" art-dialog-options="url:'/auth_user/passwd/id/356.html',title:'修改密码 - “武海刚”',width:500,height:250,okVal:'确认提交',ok:passwdOk,cancel:true"><i class="fa fa-lock"></i>修改密码</a>
+                    </li>
+                    <li style="background: #2c6a8a;">
+                        <a href="/public/logout.html" title="退出登录"><i class="fa fa-power-off"></i>退出登录</a>
+                    </li>
+                </ul>
+                <!---->
+            </div>
+        </div>
+        <!--head End-->
+        <!--left-frame-->
+        <div class="left-frame" data-options="region:'west',border:false,collapsible:false,width:230" title="">
+            <div class="easyui-tabs left-menu-tabs" data-options="fit:true,border:false,headerWidth:60,tabPosition:'left',tabWidth:60,tabHeight:50,onSelect:westToggle">
+				<div class="left-menu-tab-level1" title="<div class='switch-title' title='工作台'><i class='fa fa-user'></i><span>工作台</span></div>" >
+					<div id="workbench-tools" class="hidden">
+                        <div class="left-menu-tools">
+                            <a onclick="artDialogOpen({url:'/auth_user/shortcut.html',title:'控制台常用菜单设置',width:780,height:410,ok:artEditOk,cancel:true});">
+                                <i class="fa fa-cog"></i>
+                            </a>
+                        </div>
+                        <form action="" class="form-horizontal pad5px">
+                            <input class="form-control input-24px js_screen" type="text" placeholder="模糊匹配菜单" autocomplete="off" >
+                        </form>
+                    </div>
+					<div class="easyui-panel" title="我的工作台" data-options="fit:true,border:false,cls:'panel-skin-2',tools:'#workbench-tools'" style="position:relative;">
+						<ul class="left-menu-list plr10px zero">
+													<li>
+								<span><i class="fa fa-list"></i>资产管理</span>
+								<ul class="left-menu-list-2 zero" style="display: block;">
+																	<li>
+										<a title="帐内主资产" href="/asset/inner.html">
+										<i class="fa fa-list-alt"></i>帐内主资产</a>
+									</li>									<li>
+										<a title="帐外资产库" href="/asset/invisible.html">
+										<i class="fa fa-list-alt"></i>帐外资产库</a>
+									</li>									<li>
+										<a title="低值资产库" href="/asset/low_value.html">
+										<i class="fa fa-list-alt"></i>低值资产库</a>
+									</li>									<li>
+										<a title="附属设备库" href="/asset/attach.html">
+										<i class="fa fa-list-alt"></i>附属设备库</a>
+									</li>									<li>
+										<a title="所有资产查询" href="/asset/index.html">
+										<i class="fa fa-list-alt"></i>所有资产查询</a>
+									</li>									<li>
+										<a title="档案管理" href="/archive_explorer/index/type/3.html">
+										<i class="fa fa-archive"></i>档案管理</a>
+									</li>									<li>
+										<a title="标签打印" href="/label/manage.html">
+										<i class="fa fa-hospital-o"></i>标签打印</a>
+									</li>									<li>
+										<a title="资产转科" href="/asset_shift/index/type/3.html">
+										<i class="fa fa-share-square"></i>资产转科</a>
+									</li>									<li>
+										<a title="资产调拨" href="/menu/tabpage/from/borrow.html">
+										<i class="fa fa-external-link-square"></i>资产调拨</a>
+									</li>									<li>
+										<a title="资产外调" href="/menu/tabpage/from/outside.html">
+										<i class="fa fa-mail-forward"></i>资产外调</a>
+									</li>									<li>
+										<a title="资产报废" href="/menu/tabpage/from/scrap.html">
+										<i class="fa fa-trash-o"></i>资产报废</a>
+									</li>									<li>
+										<a title="资产盘点" href="/menu/tabpage/from/inventory.html">
+										<i class="fa fa-anchor"></i>资产盘点</a>
+									</li>									<li>
+										<a title="日常检视" href="/asset_status_summary/equip_check_list.html">
+										<i class="fa fa-file-o"></i>日常检视</a>
+									</li>									<li>
+										<a title="资产报表" href="/asset_report/index.html">
+										<i class="fa fa-file-o"></i>资产报表</a>
+									</li>								</ul>
+							</li><li>
+								<span><i class="fa fa-star"></i>重点设备</span>
+								<ul class="left-menu-list-2 zero" >
+																	<li>
+										<a title="中大型设备监控" href="/special_asset/large.html">
+										<i class="fa fa-cube"></i>中大型设备监控</a>
+									</li>									<li>
+										<a title="急救生命支持" href="/menu/tabpage/from/SpecialAssetLife.html">
+										<i class="fa fa-cube"></i>急救生命支持</a>
+									</li>									<li>
+										<a title="POCT设备" href="/menu/tabpage/from/SpecialAssetPoct.html">
+										<i class="fa fa-cube"></i>POCT设备</a>
+									</li>									<li>
+										<a title="检验类设备管理" href="/menu/tabpage/from/SpecialAssetInspect.html">
+										<i class="fa fa-file-o"></i>检验类设备管理</a>
+									</li>									<li>
+										<a title="特种设备管理" href="/menu/tabpage/from/SpecialAssetSpecial.html">
+										<i class="fa fa-file-o"></i>特种设备管理</a>
+									</li>									<li>
+										<a title="辐射设备管理" href="/menu/tabpage/from/SpecialAssetRadiation.html">
+										<i class="fa fa-file-o"></i>辐射设备管理</a>
+									</li>								</ul>
+							</li><li>
+								<span><i class="fa fa-suitcase"></i>保修管理</span>
+								<ul class="left-menu-list-2 zero" >
+																	<li>
+										<a title="买保计划" href="/insure_plan/manage.html">
+										<i class="fa fa-file-o"></i>买保计划</a>
+									</li>									<li>
+										<a title="买保合同" href="/contract/tabpage/type/insurance.html">
+										<i class="fa fa-file"></i>买保合同</a>
+									</li>									<li>
+										<a title="保修提醒" href="/contract_insurance/remind.html">
+										<i class="fa fa-bell-o"></i>保修提醒</a>
+									</li>								</ul>
+							</li><li>
+								<span><i class="fa fa-briefcase"></i>保养管理</span>
+								<ul class="left-menu-list-2 zero" >
+																	<li>
+										<a title="日常保养(一级)" href="/menu/tabpage/from/maintain_day.html">
+										<i class="fa fa-heartbeat"></i>日常保养(一级)</a>
+									</li>									<li>
+										<a title="日常巡检" href="/menu/tabpage/from/inspect/type/medical.html">
+										<i class="fa fa-file-o"></i>日常巡检</a>
+									</li>									<li>
+										<a title="二级保养(PM)" href="/maintain_second/index.html">
+										<i class="fa fa-shield"></i>二级保养(PM)</a>
+									</li>								</ul>
+							</li><li>
+								<span><i class="fa fa-wrench"></i>维修管理</span>
+								<ul class="left-menu-list-2 zero" >
+																	<li>
+										<a title="维修申请" href="/repair/apply.html">
+										<i class="fa fa-file-o"></i>维修申请</a>
+									</li>									<li>
+										<a title="维修台" href="/repair/workbench.html">
+										<i class="fa fa-dashboard"></i>维修台</a>
+									</li>									<li>
+										<a title="维修查询" href="/repair/index.html">
+										<i class="fa fa-file-o"></i>维修查询</a>
+									</li>									<li>
+										<a title="费用审批" href="/repair_fee/index/type/3.html">
+										<i class="fa fa-pencil-square-o"></i>费用审批</a>
+									</li>									<li>
+										<a title="维修审核" href="/repair/check_list.html">
+										<i class="fa fa-file-o"></i>维修审核</a>
+									</li>									<li>
+										<a title="外送设备" href="/repair_out/index.html">
+										<i class="fa fa-share-square-o"></i>外送设备</a>
+									</li>									<li>
+										<a title="发票管理" href="/invoice/index/type/2/fm/repair_medical.html">
+										<i class="fa fa-hospital-o"></i>发票管理</a>
+									</li>									<li>
+										<a title="配件查询" href="/repair_spare/index.html">
+										<i class="fa fa-file-o"></i>配件查询</a>
+									</li>									<li>
+										<a title="统计报表" href="/repair_chart/index.html">
+										<i class="fa fa-bar-chart-o"></i>统计报表</a>
+									</li>									<li>
+										<a title="维修预警" href="/menu/tabpage/from/repair.html">
+										<i class="fa fa-file-o"></i>维修预警</a>
+									</li>									<li>
+										<a title="综合评价" href="/repair/evaluation.html">
+										<i class="fa fa-file-o"></i>综合评价</a>
+									</li>									<li>
+										<a title="项目服务" href="/menu/tabpage/from/ProjectServicesApply.html">
+										<i class="fa fa-file-o"></i>项目服务</a>
+									</li>								</ul>
+							</li><li>
+								<span><i class="fa fa-bar-chart-o"></i>效益分析</span>
+								<ul class="left-menu-list-2 zero" >
+								                                            									<li>
+										<a title="综合登记" href="/asset_work_store/init.html">
+										<i class="fa fa-pencil"></i>综合登记</a>
+									</li>									<li>
+										<a title="数据采集" href="/menu/tabpage/from/benefit_collect.html">
+										<i class="fa fa-suitcase"></i>数据采集</a>
+									</li>									<li>
+										<a title="数据分析" href="/menu/tabpage/from/benefit_data_analysis.html">
+										<i class="fa fa-pie-chart"></i>数据分析</a>
+									</li>									<li>
+										<a title="分析报告" href="/benefit_asset/tabpage/from/report.html">
+										<i class="fa fa-file-text-o"></i>分析报告</a>
+									</li>									<li>
+										<a title="数据导出" href="/benefit_export/index.html">
+										<i class="fa fa-file-o"></i>数据导出</a>
+									</li>									<li>
+										<a title="分析评价" href="/analytical_evaluation/index.html">
+										<i class="fa fa-pencil-square-o"></i>分析评价</a>
+									</li>									<li>
+										<a title="数据报表" href="/benefit_asset/tabpage/from/data_form.html">
+										<i class="fa fa-file-o"></i>数据报表</a>
+									</li>									<li>
+										<a title="效益预警" href="/menu/tabpage/from/asset_early_warning.html">
+										<i class="fa fa-line-chart"></i>效益预警</a>
+									</li>								</ul>
+							</li><li>
+								<span><i class="fa fa-coffee"></i>采购管理</span>
+								<ul class="left-menu-list-2 zero" >
+																	<li>
+										<a title="计划申请" href="/asset_purchase_apply/manage.html">
+										<i class="fa fa-file-text-o"></i>计划申请</a>
+									</li>									<li>
+										<a title="计划论证" href="/menu/tabpage/from/plan_proof.html">
+										<i class="fa fa-file-o"></i>计划论证</a>
+									</li>									<li>
+										<a title="计划汇总" href="/asset_purchase_apply_detail/index.html">
+										<i class="fa fa-file-o"></i>计划汇总</a>
+									</li>									<li>
+										<a title="采购立项" href="/asset_purchase_project/project_approval.html">
+										<i class="fa fa-file-o"></i>采购立项</a>
+									</li>									<li>
+										<a title="公开招标" href="/asset_purchase_project/public_bidding.html">
+										<i class="fa fa-file-o"></i>公开招标</a>
+									</li>									<li>
+										<a title="自主招标" href="/asset_purchase_project/index.html">
+										<i class="fa fa-inbox"></i>自主招标</a>
+									</li>									<li>
+										<a title="签约项目" href="/asset_purchase_project/signing_project.html">
+										<i class="fa fa-file-o"></i>签约项目</a>
+									</li>									<li>
+										<a title="采购设置" href="/asset_purchase_apply/left_tabpage/from/set_and_help.html">
+										<i class="fa fa-file-o"></i>采购设置</a>
+									</li>									<li>
+										<a title="采购资料库" href="/explorer/Procurement_database.html">
+										<i class="fa fa-book"></i>采购资料库</a>
+									</li>								</ul>
+							</li><li>
+								<span><i class="fa fa-delicious"></i>服务商管理</span>
+								<ul class="left-menu-list-2 zero" >
+																	<li>
+										<a title="设备供应商" href="/supplier/index/stype/EquSup.html">
+										<i class="fa fa-file-o"></i>设备供应商</a>
+									</li>									<li>
+										<a title="生产厂家" href="/supplier/index/stype/EquPro.html">
+										<i class="fa fa-file-o"></i>生产厂家</a>
+									</li>									<li>
+										<a title="维修服务商" href="/supplier/index/stype/RepSup.html">
+										<i class="fa fa-file-o"></i>维修服务商</a>
+									</li>									<li>
+										<a title="服务商证书提醒" href="/supplier/certificate_remind.html">
+										<i class="fa fa-file-o"></i>服务商证书提醒</a>
+									</li>								</ul>
+							</li>						</ul>
+					</div>
+				</div>
+			<div class="left-menu-tab-level1" title="<div class='switch-title' title='OA'><i class='fa fa-user-md'></i><span>OA</span></div>" data-options="href:'/index/left/id/6.html',loader:leftMenuLoader" >
+					<div class="panel-loading">loading...</div>
+				</div><div class="left-menu-tab-level1" title="<div class='switch-title' title='设备科'><i class='fa fa-book'></i><span>设备科</span></div>" data-options="href:'/index/left/id/2.html',loader:leftMenuLoader" >
+					<div class="panel-loading">loading...</div>
+				</div><div class="left-menu-tab-level1" title="<div class='switch-title' title='信息科'><i class='fa fa-laptop'></i><span>信息科</span></div>" data-options="href:'/index/left/id/3.html',loader:leftMenuLoader" >
+					<div class="panel-loading">loading...</div>
+				</div><div class="left-menu-tab-level1" title="<div class='switch-title' title='总务科'><i class='fa fa-paste'></i><span>总务科</span></div>" data-options="href:'/index/left/id/4.html',loader:leftMenuLoader" >
+					<div class="panel-loading">loading...</div>
+				</div><div class="left-menu-tab-level1" title="<div class='switch-title' title='物资'><i class='fa fa-h-square'></i><span>物资</span></div>" data-options="href:'/index/left/id/5.html',loader:leftMenuLoader" >
+					<div class="panel-loading">loading...</div>
+				</div><div class="left-menu-tab-level1" title="<div class='switch-title' title='决策'><i class='fa fa-signal'></i><span>决策</span></div>" data-options="href:'/index/left/id/7.html',loader:leftMenuLoader" >
+					<div class="panel-loading">loading...</div>
+				</div><div class="left-menu-tab-level1" title="<div class='switch-title' title='设置'><i class='fa fa-cog'></i><span>设置</span></div>" data-options="href:'/index/left/id/75.html',loader:leftMenuLoader" >
+					<div class="panel-loading">loading...</div>
+				</div>            </div>
+            <!--滚动按钮-->
+            <div class="sidebar-scroller-wrap clearfix">
+                <span class="sidebar-scroller-btn sidebar-scroller-up"><i class="fa fa-chevron-up"></i></span>
+                <span class="sidebar-scroller-btn sidebar-scroller-down"><i class="fa fa-chevron-down"></i></span>
+            </div>
+        </div>
+        <!--left-frame End-->
+        <!-- main-frame | start -->
+        <div class="main-frame" data-options="border:false,region:'center'" style="border-left: 4px solid #eee;">
+            <div class="tabs-frame tabs-skin-gray2 easyui-tabs" data-options="fit:true,border:false,tools:'#bars',tabHeight:25,pill:true,onSelect: tabsFrameOnSelect">
+                <div title="系统首页" data-options="fit:true,href:'/index/home.html',onBeforeLoad:frameBeforeLoad">
+                    <div class="panel-loading">loading...</div>
+                </div>
+            </div>
+            <div id="bars" class="left-menu-bars">
+                <a href="javascript:;" class="js-closeAll"><span class="icon-remove" title="关闭全部"></span></a>
+            </div>
+            <div class="bars-tabs">
+                <i class="fa fa-bars"></i>
+            </div>
+        </div>
+        <!-- main-frame | end -->
+    </div>
+    <!--意见反馈--><!--right-frame-foot ff-menu -->
+    <div class="left-foot">
+		<div class="volume-btn">
+			<a class="volume easyui-tooltip" href="javascript:;" title="静音/取消静音" volume="1" data-options="position:'top'"><i class="fa fa-volume-up"></i></a>
+		</div>
+        <ul class="shortcut-list zero clearfix">
+            <li>
+                <a href="javascript:;" data-url="/repair/apply_count/flag/1.html" class="easyui-tooltip bell-msg" title="待处理的报修申请" data-options="position:'top'">
+                    <sup id="bxNum" data-url="/repair/apply_count.html">0</sup>
+                    <i class="bell fa fa-bell-o bell-act"></i>
+                </a>
+                <div id="music" style="width: 0px; height: 0px;">
+                    <img id="jp_poster_0" style="width: 0px; height: 0px; display: none;">              
+                    <audio id="jp_audio_0" preload="metadata" src="/static/plugins/jplayer/alert.mp3"></audio>
+                </div>
+            </li>
+			<li>
+                <a href="javascript:;" class="easyui-tooltip js_openTab" title="意见反馈" data-options="position:'top'">
+                    <i class="fa fa-pencil-square-o"></i>
+                </a>
+            </li>
+        </ul>
+		<script id="msg-list-tpl" type="text/tpl">
+			<li><a href="%url%" class="js_openTab" tab-title="%title%">%r_asset_name% (%a_no%)</a></li>
+		</script>
+    </div>
+
+    
+
+<script type="text/javascript" src="/static/plugins/jquery/jquery.browser.js?20221118"></script>
+<script type="text/javascript" src="/static/plugins/artDialog/jquery.artDialog.js?skin=default"></script><script type="text/javascript" src="/static/plugins/artDialog/plugins/iframeTools.js?20221118"></script><script type="text/javascript" src="/static/plugins/artDialog/config.artDialog.js?20221118"></script><script type="text/javascript" src="/static/medical/js/easyui_extend.js?20221118"></script><script type="text/javascript" src="/static/medical/js/common.js?20221118"></script><script type="text/javascript" src="/static/medical/js/iframe.js?20221118"></script>
+<script type="text/javascript" src="/static/plugins/jquery/jquery.cookies.min.js?20221118"></script><script type="text/javascript" src="/static/plugins/jplayer/jquery.jplayer.min.js?20221118"></script><script type="text/javascript" src="/static/plugins/jplayer/jquery.jplayer.conf.js?20221118"></script><script type="text/javascript" src="/static/plugins/jquery/jquery.mousewheel.min.js?20221118"></script><script type="text/javascript" src="/static/plugins/jquery/jquery.qrcode.min.js?20221118"></script><script type="text/javascript" src="/static/medical/js/index.js?20221118"></script><script type="text/javascript">
+function passwdOk(){
+	var dialog = this.iframe.contentWindow.document;
+    if(!dialog.body) {
+		return false;
+	}
+	$('#passwdEdit button[name=dosubmit]', dialog).trigger('click');
+	return false;
+}
+function leftMenuLoader(data, success, error){
+	var opts=$(this).panel("options");
+	if(!opts.href){
+		return false;
+	}
+	$.ajax({
+		type: opts.method,
+		url: opts.href,
+		cache: false,
+		data: data,
+		dataType: "html",
+		success: function(res, textStatus, jqXHR){
+			var contentType = jqXHR.getResponseHeader('Content-Type');
+			if(contentType && contentType.indexOf('json')!=-1){
+				var resJson = $.parseJSON(res);
+				if(resJson && ("info" in resJson) && resJson.info!=''){
+					res = resJson.info;
+					artDialog.error(res);
+				}
+			}
+			
+			success(res);
+
+			if(typeof setMainMenu === 'function'){
+				setTimeout(setMainMenu, 100);//将主菜单名称附加到三级子菜单
+			}
+		},
+		error:function(){
+			error.apply(this,arguments);
+		}
+	});
+}
+function getNewAnnounceList(){
+    if($.type(window.getNewAnnounceListSwitch)!='undefined' && window.getNewAnnounceListSwitch == false){ // 增加开关设置
+        setTimeout(getNewAnnounceList, 30000);
+    }else{
+    	var url = $('#notice-list').data('url');
+    	var item = $('#notice-list').attr('item-url');
+    	$.ajax({
+    		url: url,
+    		dataType:'json',
+    		timeout: 6100,
+    		success:function(data){
+    			var str = '';
+    			if(data.total>0){
+    				$.each(data.rows,function(i,v){
+    				str += ' <li>'+
+    						'<a href="javascript:;" class="clearfix art-dialog-open" art-dialog-options="url:\''+item.replace(/__ID__/,v.a_id)+'\',title:\'公告详情\',width:600,height:360">'+
+    							'<span class="s1 fl" style="display: block;">'+v.a_title+'</span>'+
+    							'<span class="s2 fr" style="display: block;">'+v.a_indate+'</span>'+
+    						'</a>'+
+    					'</li>';
+    				});	
+    			}
+    			str += '<li>'+
+                            '<a href="javascript:;" class="text-center notice-list-more js-announce">查看更多</a>'+
+                        '</li>';
+    			$('#notice-list').html(str);
+    		},
+    		complete: function(XMLHttpRequest, textStatus){
+    			setTimeout(getNewAnnounceList, 16000);
+    		}
+    	});
+    }
+}
+$('body').on('click','.js-announce',function(){
+	tabs_add('公告', '/abc/index.html');
+});
+setTimeout(getNewAnnounceList, 7300);
+
+$(function(){
+    if($('#hospitalCloseDialog').length){
+        artDialog({
+            content: $('#hospitalCloseDialog')[0],
+            title: '系统关闭提示',
+            okVal: '知道了',
+            ok:true,
+            close: function(){
+                var _this = this;
+                setTimeout(function(){
+                    _this.show();
+                }, 3 * 60 * 1000);
+                this.hide();
+                return false;
+            }
+        });
+        
+    }
+});
+</script>
+</body>
+</html>
